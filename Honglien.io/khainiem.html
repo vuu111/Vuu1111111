@@ -3,61 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vật chất là gì?</title>
+  <title>Kỷ niệm tình yêu</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
+      background: linear-gradient(to top right, #ff9a9e, #fad0c4);
+      font-family: 'Courier New', monospace;
+      color: #fff;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      padding: 20px;
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px); /* Hỗ trợ Safari */
-      padding: 40px;
-      border-radius: 16px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      animation: fadeIn 1.5s ease;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 50px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
     }
 
     h1 {
-      font-size: 2.2em;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #ff6a00, #ee0979);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
     }
 
     p {
       font-size: 1.2em;
       line-height: 1.6;
-      color: #f0f0f0;
+      margin-top: 20px;
+      color: #fff;
+      animation: typing 5s steps(60, end), blink .75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #fff;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: white; }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHeart 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -7.5px;
+      top: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Vật chất là gì?</h1>
-    <p>Vật chất là tất cả những gì có khối lượng và chiếm một không gian trong vũ trụ. Vật chất tồn tại dưới nhiều dạng như rắn, lỏng, khí hoặc plasma, và cấu tạo từ các hạt cơ bản như nguyên tử, phân tử.</p>
+    <h1>Kỷ niệm ngọt ngào của đôi ta</h1>
+    <p>Ngày ấy anh gặp em, thế giới như chỉ còn một màu hồng...</p>
   </div>
+
+  <!-- Tim rơi ngẫu nhiên -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+  </script>
 </body>
 </html>
